@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VORP Store Item Generator</title>
+</head>
+<body>
+    <h2>VORP Store Item Generator</h2>
+    <form id="jsonForm">
+        <label for="itemLabel">Item Label:</label>
+        <input type="text" id="itemLabel" name="itemLabel" required><br>
+
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName" required><br>
+
+        <label for="currencyType">Currency Type:</label>
+        <select id="currencyType" name="currencyType" required>
+            <option value="cash">Cash</option>
+            <option value="gold">Gold</option>
+        </select><br>
+
+        <label for="buyprice">Buy Price:</label>
+        <input type="number" id="buyprice" name="buyprice" required><br>
+
+        <label for="desc">Description:</label>
+        <input type="text" id="desc" name="desc" required><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="tools">Tools</option>
+            <option value="food">Food</option>
+            <option value="meds">Meds</option>
+            <option value="weapons">Weapons</option>
+        </select><br>
+
+        <label for="itemLimit">Item Limit:</label>
+        <input type="number" id="itemLimit" name="itemLimit" required><br>
+
+        <button type="button" onclick="generateJSON()">Generate JSON</button>
+    </form>
+
+    <h2>Copy and Paste Below:</h2>
+    <pre id="jsonOutput"></pre>
+
+    <script>
+        function generateJSON() {
+            const itemLabel = document.getElementById("itemLabel").value;
+            const itemName = document.getElementById("itemName").value;
+            const currencyType = document.getElementById("currencyType").value;
+            const buyprice = parseFloat(document.getElementById("buyprice").value);
+            const desc = document.getElementById("desc").value;
+            const category = document.getElementById("category").value;
+            const itemLimit = parseInt(document.getElementById("itemLimit").value);
+
+            // Manually construct the JSON string
+            const jsonString = `{
+                itemLabel = "${itemLabel}",
+                itemName = "${itemName}",
+                currencyType = "${currencyType}",
+                buyprice = ${buyprice},
+                randomprice = math.random(30, 50) / 100,
+                desc = "${desc}",
+                category = "${category}",
+                itemLimit = ${itemLimit},
+            }`;
+
+            // Display the JSON string
+            document.getElementById("jsonOutput").textContent = jsonString;
+        }
+    </script>
+    <b>After generating your item, copy the code to your buyitemsCFG.lua and/or sellitemsCFG.lua. Then generate your next item.</b>
+    </p>
+</body>
+</html>
